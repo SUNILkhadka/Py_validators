@@ -20,7 +20,40 @@ def validate(dictionary, dictionary_keys,data_type_rules,data_range_rules):
     count = 0
     index = 0
     range_rules_list = []
+    if dictionary is not dict or dictionary_keys is not list or data_type_rules is not list or data_range_rules is not dict:
+        print('''
+    Error !!!!
+    This functions takes dictionary(dict) as first, dictionary keys(list) as second, data_type_rules(list) as third
+    & data_range_rules(dict) as fourth arguement.
+    eg.
+        dictionary = {
+            'name': 'Doleshor',
+            'age': 29,
+            'color': 'Grey white',
+            'height': 5.5,
+            'desc': 'Hello everyone!'
+            }
+        keys = ['name', 'age', 'color', 'height', 'desc']
+        data_type_rules = ['string',int,str,float,str]   
 
+        data_range_rules = {
+            "name_min" : 5,
+            'name_max' : '-',
+            'age_min' : 10,
+            'age_max' : 50,
+            'color_min' : 5,
+            'color_max' : 20,
+            'height_min' : 5.0,
+            'height_max' : 6.0,
+            'desc_min' : 10,
+            'desc_max' : 100
+            }
+        
+        >>> validate( dictionary, keys, data_type_rules, data_range_rules )
+            True
+        
+        ''')
+        return False
 
     if len(dictionary.keys()) != len(dictionary_keys):
         print("Error! Dictionary keys is is of different length.")
