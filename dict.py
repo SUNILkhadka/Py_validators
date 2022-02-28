@@ -89,6 +89,70 @@ def validate(dictionary, dictionary_keys,data_type_rules,data_range_rules):
         else:
             print("Error! Data type rules contains keyword '",z,"' which is not recognised as data type .")
             return False
+    for x in dictionary.keys():
+        if x not in dictionary_keys:
+            print("Error! '",x,"' key not found in given dictionary keys")
+            return False
+        data = dictionary[x]
+        data_type =  type(data)
+        # loop for keys as index of parameter keys may differ from given dictionary keys 
+        for y in range(len(dictionary)):
+            # checking the parameter dictionary keys with the parameter keys
+            if x == dictionary_keys[y]:
+                # Extracting minimum and maximum parameters for each matched keys
+                min = range_rules_list[count]
+                max = range_rules_list[count+1]
+                try:
+                    if min < max:
+                        pass
+                    else:
+                        raise KeyError()
+                except KeyError :
+                    return "Error occured while checking! 'minimum value is greater than maximum value'"
+                except Exception as e:
+                    pass
+                # Count is increased by two as the maximum and minimum parameter differs by value two
+                count+=2
+                # checking wether the given value is float or int or string
+                check_type = data_type_rules[index]
+                if data_type is int or data_type is float:
+                    index +=1
+                    if data_type == check_type:
+                        if max == '-':
+                            if  min < data :
+                                check +=1
+                        elif min == '-':
+                            if  data < max:
+                                check +=1
+                        else:
+                            if  min < data < max:
+                                check +=1
+                    else:
+                        print('Error! Integer of Float not matched as data type in dictionary is ',data_type,' and data type in provided data type rules is ',check_type)
+                        return False
+                if data_type is str:
+                    index+=1
+                    if data_type == check_type:
+                        if max == '-':
+                            if  min < len(data):
+                                check +=1 
+                        elif min == '-':
+                            if  len(data)< max:
+                                check +=1 
+                        else:
+                            if  min < len(data):
+                                check +=1 
+                    else:
+                        print('Error! String not matched as data type in dictionary is ',str(data_type)[-5:-2],' and data type in provided data type rules is ',check_type)
+                        return False 
+                if data_type is bool:
+                    index+=1
+                    if data_type == check_type:
+                        if data is True or False:
+                            check +=1
+                    else:
+                        print('Error! Boolean not matched as data type in dictionary is ',data_type,' and data type in provided data type rules is ',check_type)
+                        return False
 
     # Finally checking the counter and returning boolean value
     if check == len(dictionary):
