@@ -128,7 +128,22 @@ def validate(dictionary, dictionary_keys,data_type_rules,data_range_rules):
                             if  min < data < max:
                                 check +=1
                     else:
-                        print('Error! Integer of Float not matched as data type in dictionary is ',data_type,' and data type in provided data type rules is ',check_type)
+                        print('Error! Integer not matched as data type in dictionary is ',str(data_type)[-5:-2],' and data type in provided data type rules is ',check_type)
+                        return False
+                if data_type  is float:
+                    index +=1
+                    if data_type == check_type:
+                        if max == '-':
+                            if  float(min) < float(data) :
+                                check +=1
+                        elif min == '-':
+                            if  float(data) < float(max):
+                                check +=1
+                        else:
+                            if  float(min) < float(data) < float(max):
+                                check +=1
+                    else:
+                        print('Error! Float not matched as data type in dictionary is ',str(data_type)[-7:-2],' and data type in provided data type rules is ',check_type)
                         return False
                 if data_type is str:
                     index+=1
@@ -151,7 +166,7 @@ def validate(dictionary, dictionary_keys,data_type_rules,data_range_rules):
                         if data is True or False:
                             check +=1
                     else:
-                        print('Error! Boolean not matched as data type in dictionary is ',data_type,' and data type in provided data type rules is ',check_type)
+                        print('Error! Boolean not matched as data type in dictionary is ',str(data_type)[-6:-2],' and data type in provided data type rules is ',check_type)
                         return False
 
     # Finally checking the counter and returning boolean value
@@ -160,25 +175,12 @@ def validate(dictionary, dictionary_keys,data_type_rules,data_range_rules):
     else:
         return False
 
-
-data_range_rules = {
-    "name_min" : 5,
-    'name_max' : '-',
-    'age_min' : 10,
-    'age_max' : 50,
-    'color_min' : 5,
-    'color_max' : 20,
-   'height_min' : 5.0,
-   'height_max' : 6.0,
-   'desc_min' : 10,
-   'desc_max' : 100
-}
 arg = {
-    'keys': ['name', 'age', 'color', 'height', 'desc'],
-    'data_type_rules': ['string',int,str,float,str],
-    # 'data_range_rules': [5,'-',10,50,5,20,5.0,6.0,10,100]
-    # data range list values is first minimum and second maximum of key in keys corresponding to key
-    # pass '-' if you don't want to specify specific length
+    'name' : {'type':'string','min':5},
+    'age': {'type':'int','max':50},
+    'color':{'type':'string','min':2,'max':20},
+    'height':{'type':'float','min':5 ,'max':6},
+    'desc':{'type':'string','min':10,'max':100}
 }
+print(validate(dictn,arg))
 
-print(validate('dictn',arg['keys'],arg['data_type_rules'],data_range_rules))
