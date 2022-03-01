@@ -40,7 +40,6 @@ def validate(dictionary,schema):
     if len(dictionary.keys()) != len(schema_keys):
         print("Error! Dictionary keys is is of different length.")
         return False
-
     for x in dictionary.keys():
         if x not in schema_keys:
             print("Error! '",x,"' key not found in given schema keys")
@@ -82,7 +81,7 @@ def validate(dictionary,schema):
                         raise KeyError()
                 except KeyError :
                     return "Error occured while checking! 'minimum value is greater than maximum value'"
-                except Exception as e:
+                except:
                     pass
                 # checking wether the given value is float or int or string
                 check_type = schema_data['type']
@@ -157,4 +156,3 @@ arg = {
     'desc':{'type':'string','min':10,'max':100}
 }
 print(validate(dictn,arg))
-
