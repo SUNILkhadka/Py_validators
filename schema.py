@@ -1,8 +1,6 @@
 
 from cerberus import Validator
 
-
-
 schema = {
     'name' : {'type' :'string','minlength':5 ,'maxlength': 20},
     'age': {'type': 'integer'},
@@ -32,5 +30,3 @@ print(v.validate({
     'location': {'latitude':28.394857,'longitude':84.124008},
     'address': {'country':'Nepal','city':'Dharan','street':'mahendra road'}
     }))
-
-

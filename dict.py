@@ -1,11 +1,11 @@
 def validate(dictionary,schema):
-    # variables for checking and counting the loops 
     '''
         Return whether or not given dictionary is valid or not on the basis of given dictionary keys,
         data type rules & data range rules.
         If the dictionary is valid this function returns ``True``, otherwise
         gives error massages and return ``false`` 
     '''
+    # variables for checking and counting the loops 
     check = 0 
     schema_keys = list(schema.keys())  # or can use schema_keys = [*schema] to extract keys as list
     if type(dictionary) is not dict or type(schema) is not dict:
