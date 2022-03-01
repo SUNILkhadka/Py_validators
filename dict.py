@@ -26,11 +26,10 @@ def validate(dictionary,schema):
             'color':{'type':'string','min':2,'max':20},
             'height':{'type':'float','min':5 ,'max':6},
             'desc':{'type':'string','min':10,'max':100}
-            # min = minimum length of the string or minimum value of integer
-            # max = maximum length of the string or maximum value of integer
+            # minlength = minimum length of the string or minimum value of integer
+            # maxlength = maximum length of the string or maximum value of integer
             }
 
-        
         >>> validate( dictionary, schema )
             True
         
