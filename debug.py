@@ -20,18 +20,20 @@ text = '''
 
 
 def search(text,keyword):
-    count = 0
-    result = []
+    count = 1
+    result = {}
     for x in text:
         if x.find(keyword) > 0:
-            result.append(x+'.\n')
+            result[str(count)] = x
             count+=1
-    print(result)
-    if count == 0:
+    if count == 1:
         print('Not Found')
+        return None
     else:
-        print("Found in '",count,"' sentence")
+        print("Found in '",count-1,"' sentence")
+        return result
         
 txt = ['A risk management.', 'In recent risk years there has been an Accident .\n', 'This is best accomplished.\n']
-search(txt,'risk')
+txt = text.split('.')
+print(search(txt,'risk'))
 
